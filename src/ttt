@@ -1,0 +1,36 @@
+1. 로그인 한 사람만 댓글달기
+
+
+create table readcnt(
+clickedid varchar2(20),
+num number(4),
+foreign key (num) references board(num) on delete cascade,
+primary key(clickedid, num));
+
+테이블이 생성되었습니다.
+
+
+ 댓글달기
+create table boardComment(
+num number(4),
+id varchar2(8),
+cMemo varchar2(100),
+cno number(4),
+cdate date default sysdate,
+foreign key (num) references board(num),
+primary key(cno));
+
+테이블이 생성되었습니다.
+
+create sequence boardComment_seq;
+
+시퀀스가 생성되었습니다.
+
+insert into boardComment (num,id,cMemo,cno)
+values (1,'aaa','test',boardComment_seq.nextval);
+
+1 개의 행이 만들어졌습니다.
+
+SQL> commit;
+
+커밋이 완료되었습니다.
